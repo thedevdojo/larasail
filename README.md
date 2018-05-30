@@ -1,7 +1,6 @@
 # LaraSail
 
-Helping you Sail the servers of the Digital Ocean
-LaraSail is a command line tool that will help you quickly and easily install a new Laravel app on the Digital Ocean LEMP server.
+LaraSail is a CLI tool for Laravel to help you Sail the servers of the Digital Ocean
 
 To Install boot up a new LEMP server on digital ocean and run the following command:
 

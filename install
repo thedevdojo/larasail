@@ -1,11 +1,11 @@
 #!/bin/bash
 
-mv larasail-master/.larasail ~/.larasail
-echo "alias larasail='sh ~/.larasail/larasail'" >> ~/.bashrc
-alias larasail='sh ~/.larasail/larasail' >/dev/null 2>/dev/null
+mv larasail-master/.larasail /etc/.larasail
+echo "alias larasail='sh /etc/.larasail/larasail'" >> /etc/bash.bashrc
+alias larasail='sh /etc/.larasail/larasail' >/dev/null 2>/dev/null
 
-. ~/.larasail/includes/colors
-. ~/.larasail/includes/format
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
 
 setsailNoColor
 

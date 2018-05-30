@@ -5,5 +5,5 @@ if [ "$1" = "-h" ]
 then
     echo "Larasail Help"
 else
-    sh ~/.larasail/$1 $2 $3
+    sh /etc/.larasail/$1 $2 $3
 fi

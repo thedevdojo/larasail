@@ -1,11 +1,11 @@
 #!/bin/bash
 
-. ~/.larasail/includes/colors
-. ~/.larasail/includes/format
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
 
 setsail
 
-MYSQLPASS=$(cat ~/.larasail/tmp/mysqlpass)
+MYSQLPASS=$(cat /etc/.larasail/tmp/mysqlpass)
 
 bar
 cyan "| MySQL Password:"

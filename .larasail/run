@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. ~/.larasail/includes/colors
-. ~/.larasail/includes/format
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
 
 PHP="7.2"
 
@@ -11,6 +11,7 @@ then
 fi
 
 setsail
+
 
 bar
 cyan "| Installing Nginx ";
@@ -29,11 +30,17 @@ bar
 MYSQLPASS=$(openssl rand -base64 32)
 
 sudo apt-get update
-echo $MYSQLPASS > ~/.larasail/tmp/mysqlpass
-sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $MYSQLPASS"
-sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $MYSQLPASS"
-sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password password $MYSQLPASS"
-sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS"
+if [ ! -d /etc/.larasail/tmp ]; then
+  mkdir /etc/.larasail/tmp
+fi
+
+echo $MYSQLPASS > /etc/.larasail/tmp/mysqlpass
+
+RUN ['/bin/bash', '-c', 'sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $MYSQLPASS"']
+RUN ['/bin/bash', '-c', 'sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $MYSQLPASS"']
+RUN ['/bin/bash', '-c', 'sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password password $MYSQLPASS"']
+RUN ['/bin/bash', '-c', 'sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS"']
+
 sudo apt-get install -y mysql-server
 
 # Enable 3306 ports in order to connect to database via Sequel Pro
@@ -45,11 +52,11 @@ bar
 cyan "| Installing PHP $PHP and all necessary files";
 bar
 
-apt-get update &&
-apt-get install -y language-pack-en-base &&
-export LC_ALL=en_US.UTF-8 &&
-export LANG=en_US.UTF-8 &&
-apt-get install -y software-properties-common &&
+sudo apt-get update
+sudo apt-get install -y language-pack-en-base
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -70,5 +77,13 @@ bar
 cyan "| Installing Composer ";
 bar
 
+useradd larasail
+su larasail
+
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
+bar
+cyan "| Adding the Laravel Installer "
+bar
+
+composer global require "laravel/installer"
