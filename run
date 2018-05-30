@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. ~/.larasail/args
+. ~/.larasail/colors
+. ~/.larasail/format
+. ~/.larasail/setsail
+
+bar
+cyan "| Installing PHP $PHP and all necessary files";
+bar
+

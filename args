@@ -1,0 +1,8 @@
+#!/bin/bash
+
+PHP="7.2"
+
+if [ "$1" = "--php71" ]
+then
+   PHP="7.1"
+fi
