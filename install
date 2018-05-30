@@ -3,4 +3,13 @@
 mv larasail-master/.larasail ~/.larasail
 echo "alias larasail='sh ~/.larasail/larasail'" >> ~/.bashrc
 alias larasail='sh ~/.larasail/larasail' >/dev/null 2>/dev/null
+
+. ~/.larasail/colors
+. ~/.larasail/format
+. ~/.larasail/setsail
+
+bar
+cyan "| Prepare the Sails, we're ready for the Open Sea!";
+bar
+
 rm -rf larasail-master
