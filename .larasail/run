@@ -95,5 +95,8 @@ alias laravel='/home/larasail/.composer/vendor/bin/laravel'
 # exit user
 exit
 
+# Add permissions for var/www folder
+chown -R larasail:larasail /var/www
+
 # switch back to larasail user
 su - larasail
