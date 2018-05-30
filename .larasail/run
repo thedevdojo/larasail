@@ -87,4 +87,4 @@ bar
 echo "export PATH=~/.composer/vendor/bin:\$PATH" >> ~/.bashrc
 sudo chown -R $USER:$USER ~/.composer/
 composer global require "laravel/installer"
-. ~/.bashrc
+alias laravel='/home/larasail/.composer/vendor/bin/laravel'
