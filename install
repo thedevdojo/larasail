@@ -1,4 +1,6 @@
 #!/bin/bash
 
 mv larasail-master/.larasail ~/.larasail
+echo "alias larasail='sh ~/.larasail/larasail'" >> ~/.bashrc
+source ~/.bashrc
 rm -rf larasail-master
