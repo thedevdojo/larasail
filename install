@@ -9,8 +9,8 @@ alias larasail='sh ~/.larasail/larasail' >/dev/null 2>/dev/null
 
 setsailNoColor
 
-bar
-cyan "| Prepare the Sails, we're ready for the Open Sea!";
-bar
+barNoColor
+echo "| Prepare the Sails, we're ready for the Open Sea!";
+barNoColor
 
 rm -rf larasail-master
