@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cyan   "                                                  "
+cyan   "                     LaraSail                     "
+purple "                         _                        "
+purple "                     __ )_)__                     "
+purple "                     )_))_))_)                    "
+purple "                     _!__!__!_                    "
+purple "                     \_______/                    "
+blue   "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
