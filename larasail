@@ -1,5 +1,5 @@
 #!/bin/bash
 # Include the first argument as a script
 
-sh ~/.larasail/$1
+sh ~/.larasail/$1 $2 $3
 
