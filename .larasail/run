@@ -90,13 +90,9 @@ bar
 echo "export PATH=~/.composer/vendor/bin:\$PATH" >> ~/.bashrc
 sudo chown -R $USER:$USER ~/.composer/
 composer global require "laravel/installer"
-alias laravel='/home/larasail/.composer/vendor/bin/laravel'
+# alias laravel=/home/larasail/.composer/vendor/bin/laravel
+source /home/larasail/.bashrc
 
-# exit user
-exit
+sudo chown -R larasail:larasail www
 
-# Add permissions for var/www folder
-chown -R larasail:larasail /var/www
 
-# switch back to larasail user
-su - larasail
