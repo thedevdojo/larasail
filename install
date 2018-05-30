@@ -1,4 +1,4 @@
 #!/bin/bash
 
-mv .larasail ~/.larasail
-
+mv larasail-master/.larasail ~/.larasail
+rm -rf larasail-master
