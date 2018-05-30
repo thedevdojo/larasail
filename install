@@ -6,8 +6,18 @@ echo "alias larasail='sh /etc/.larasail/larasail'" >> /etc/bash.bashrc
 PASS=$(openssl rand -base64 32)
 
 useradd -G sudo -d /home/larasail -p $PASS -m larasail
-echo 'larasail ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.tmp
+echo 'larasail ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 chown -R larasail:larasail /etc/.larasail/
+
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
+
+setsailNoColor
+
+barNoColor
+echo "| Prepare the Sails, we're ready for the Open Sea!";
+barNoColor
+
 su - larasail
 
 echo "alias larasail='sh /etc/.larasail/larasail'" >> ~/.bashrc
@@ -18,14 +28,5 @@ if [ ! -d /etc/.larasail/tmp ]; then
 fi
 
 sudo echo $PASS > /etc/.larasail/tmp/pass
-
-. /etc/.larasail/includes/colors
-. /etc/.larasail/includes/format
-
-setsailNoColor
-
-barNoColor
-echo "| Prepare the Sails, we're ready for the Open Sea!";
-barNoColor
 
 rm -rf larasail-master
