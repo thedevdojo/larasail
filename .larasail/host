@@ -14,6 +14,7 @@ if [ "$(whoami)" != 'root' ]; then
 	exit 1;
 fi
 
+phpVersion="$(php -v | head -n 1 | cut -d " " -f 2 | cut -c 1,2,3)"
 domain=$1
 rootPath=$2
 sitesEnable='/etc/nginx/sites-enabled/'
@@ -85,7 +86,7 @@ if ! echo "server {
 
         location ~ \.php\$ {
                 include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+                fastcgi_pass unix:/run/php/php$phpVersion-fpm.sock;
         }
 
         location ~ /\.ht {
