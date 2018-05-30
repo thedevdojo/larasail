@@ -28,3 +28,4 @@ echo "alias larasail='sh /etc/.larasail/larasail'" >> /home/larasail/.bashrc
 
 rm -rf larasail-master
 
+su - larasail
