@@ -36,6 +36,10 @@ sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password pas
 sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS"
 sudo apt-get install -y mysql-server
 
+# Enable 3306 ports in order to connect to database via Sequel Pro
+enable port 3306
+sudo ufw allow from 15.15.15.0/24 to any port 3306
+
 
 bar
 cyan "| Installing PHP $PHP and all necessary files";
