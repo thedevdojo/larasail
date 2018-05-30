@@ -1,5 +1,9 @@
 #!/bin/bash
 # Include the first argument as a script
 
-sh ~/.larasail/$1 $2 $3
-
+if [ "$1" = "-h" ]
+then
+    echo "Larasail Help"
+else
+    sh ~/.larasail/$1 $2 $3
+fi
