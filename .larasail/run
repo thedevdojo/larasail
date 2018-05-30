@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
@@ -93,6 +93,4 @@ composer global require "laravel/installer"
 # alias laravel=/home/larasail/.composer/vendor/bin/laravel
 source /home/larasail/.bashrc
 
-sudo chown -R larasail:larasail www
-
-
+sudo chown -R www-data www

@@ -22,7 +22,7 @@ in the command line.
 larasail run
 ```
 
-The default configuration will install Nginx, PHP7.2, and MySQL 5.7. If you witch to install PHP7.1, you can include the argument `php71` like so:
+The default configuration will install Nginx, PHP7.2, and MySQL 5.7. If you wish to use PHP7.1, you can include the argument `php71` like so:
 
 ```
 larasail run php71
