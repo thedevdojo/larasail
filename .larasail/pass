@@ -1,0 +1,13 @@
+#!/bin/bash
+
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
+
+setsail
+
+PASS=$(cat /etc/.larasail/tmp/pass)
+
+bar
+cyan "| LaraSail User Password:"
+cyan "| $PASS"
+bar

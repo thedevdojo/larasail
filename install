@@ -4,6 +4,14 @@ mv larasail-master/.larasail /etc/.larasail
 echo "alias larasail='sh /etc/.larasail/larasail'" >> /etc/bash.bashrc
 alias larasail='sh /etc/.larasail/larasail' >/dev/null 2>/dev/null
 
+PASS=$(openssl rand -base64 32)
+
+useradd -G sudo -d /home/larasail -p $PASS -m larasail
+su - larasail
+echo 'larasail ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.tmp
+
+echo $PASS > /etc/.larasail/tmp/pass
+
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
 
