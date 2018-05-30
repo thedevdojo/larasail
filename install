@@ -1,0 +1,3 @@
+!#/bin/bash
+
+curl -sL https://github.com/thedevdojo/larasail/archive/ | tar xz
