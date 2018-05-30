@@ -14,6 +14,7 @@ sudo echo $PASS > /etc/.larasail/tmp/pass
 useradd -G sudo -d /home/larasail -p $PASS -m larasail
 echo 'larasail ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 chown -R larasail:larasail /etc/.larasail/
+chown -R larasail:larasail /var/www
 
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
@@ -28,4 +29,3 @@ echo "alias larasail='sh /etc/.larasail/larasail'" >> /home/larasail/.bashrc
 
 rm -rf larasail-master
 
-su - larasail
