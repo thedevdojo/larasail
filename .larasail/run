@@ -13,6 +13,16 @@ fi
 setail
 
 bar
+cyan "| Installing Nginx ";
+bar
+
+sudo apt-get update
+sudo apt-get install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTPS'
+sudo systemctl restart nginx
+
+bar
 cyan "| Installing PHP $PHP and all necessary files";
 bar
 
@@ -27,11 +37,12 @@ sudo apt-get -y upgrade
 
 sudo apt-get install php$PHP php$PHP-common php$PHP-mysql php$PHP-gd php$PHP-mcrypt php$PHP-mysql php$PHP-curl php$PHP-mbstring php$PHP-xml php$PHP-zip php$PHP-fpm curl git
 
-sudo apt-get purge php7.0 php7.0-common
-
 sudo rm /usr/bin/php
 sudo ln -s /usr/bin/php$PHP /usr/bin/php
 
+bar
+cyan "| Installing Composer ";
+bar
 
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
