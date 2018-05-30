@@ -5,37 +5,59 @@
 
 PHP="7.2"
 
-if [ "$1" = "--php71" ]
+if [ "$1" = "php71" ]
 then
    PHP="7.1"
 fi
 
-setail
+setsail
 
 bar
 cyan "| Installing Nginx ";
 bar
 
 sudo apt-get update
-sudo apt-get install nginx
+sudo apt-get --yes --force-yes install nginx
 sudo ufw allow 'Nginx HTTP'
 sudo ufw allow 'Nginx HTTPS'
 sudo systemctl restart nginx
+
+bar
+cyan "| Installing MySQL ";
+bar
+
+MYSQLPASS=$(openssl rand -base64 32)
+
+sudo apt-get update
+echo $MYSQLPASS > ~/.larasail/tmp/mysqlpass
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $MYSQLPASS"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $MYSQLPASS"
+sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password password $MYSQLPASS"
+sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS"
+sudo apt-get install -y mysql-server
+
 
 bar
 cyan "| Installing PHP $PHP and all necessary files";
 bar
 
 apt-get update &&
-apt-get install --yes --force-yes language-pack-en-base &&
+apt-get install -y language-pack-en-base &&
 export LC_ALL=en_US.UTF-8 &&
 export LANG=en_US.UTF-8 &&
-apt-get install --yes --force-yes software-properties-common &&
-sudo add-apt-repository --yes --force-yes ppa:ondrej/php
-sudo apt-get --yes --force-yes update
-sudo apt-get --yes --force-yes upgrade
+apt-get install -y software-properties-common &&
+sudo add-apt-repository -y ppa:ondrej/php
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
-sudo apt-get install --yes --force-yes php$PHP php$PHP-common php$PHP-mysql php$PHP-gd php$PHP-mcrypt php$PHP-mysql php$PHP-curl php$PHP-mbstring php$PHP-xml php$PHP-zip php$PHP-fpm curl git
+#required for PHP7.2 mcrypt
+sudo apt-get -y install gcc make autoconf libc-dev pkg-config
+sudo apt-get -y install libmcrypt-dev
+
+
+sudo apt-get install -y php
+sudo apt-get install -y php7.1-mcrypt
+sudo apt-get install -y php$PHP php$PHP-common php$PHP-mysql php$PHP-gd php$PHP-mysql php$PHP-curl php$PHP-mbstring php$PHP-xml php$PHP-zip php$PHP-fpm curl git
 
 sudo rm /usr/bin/php
 sudo ln -s /usr/bin/php$PHP /usr/bin/php
