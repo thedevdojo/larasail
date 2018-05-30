@@ -1,8 +1,9 @@
 #!/bin/bash
 
-. ~/.larasail/colors
-. ~/.larasail/format
-. ~/.larasail/setsail
+. ~/.larasail/includes/colors
+. ~/.larasail/includes/format
+
+setsail
 
 bar
 cyan "| Adding New Nginx Host ";

@@ -1,11 +1,32 @@
 #!/bin/bash
 
-. ~/.larasail/args
-. ~/.larasail/colors
-. ~/.larasail/format
-. ~/.larasail/setsail
+. ~/.larasail/includes/colors
+. ~/.larasail/includes/format
+
+PHP="7.2"
+
+if [ "$1" = "--php71" ]
+then
+   PHP="7.1"
+fi
+
+setail
 
 bar
 cyan "| Installing PHP $PHP and all necessary files";
 bar
+
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install php$PHP php$PHP-common php$PHP-mysql php$PHP-gd php$PHP-mcrypt php$PHP-mysql php$PHP-curl php$PHP-mbstring php$PHP-xml php$PHP-zip php$PHP-fpm curl git
+
+sudo apt-get purge php7.0 php7.0-common
+
+sudo rm /usr/bin/php
+sudo ln -s /usr/bin/php$PHP /usr/bin/php
+
+
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
