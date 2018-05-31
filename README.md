@@ -6,7 +6,7 @@ LaraSail is a CLI tool for Laravel to help you Sail the servers of the Digital O
 
 ---
 
-To install boot up a new Ubuntu server on Digital Ocean.
+You'll need a Digital Ocean Account before getting started ([Signup here](https://m.do.co/c/6e2fb7e2925f)), then you'll need to boot up a new Ubuntu server on Digital Ocean.
 
 <p align="center"><img src="https://s3.amazonaws.com/larasail/ubuntu-server.png"></p>
 
