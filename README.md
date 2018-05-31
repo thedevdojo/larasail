@@ -57,4 +57,4 @@ larasail host mywebsite.com /var/www/mywebsite
 1. Your website domain *(website.com)*
 2. The location of the files for your site *(/var/www/website/public)*
 
-Finally, point your DNS to the IP address of your new server... And Wallah, you're ready to rock 🤘 with your new Laravel website.
+Finally, point your Domain to the IP address of your new server... And Wallah, you're ready to rock 🤘 with your new Laravel website.
