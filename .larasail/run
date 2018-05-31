@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
@@ -91,9 +91,9 @@ cyan "| Adding the Laravel Installer "
 bar
 
 echo "export PATH=~/.composer/vendor/bin:\$PATH" >> ~/.bashrc
+exec bash
 sudo chown -R $USER:$USER ~/.composer/
 composer global require "laravel/installer"
-. /home/larasail/.bashrc
 
 setsail
 

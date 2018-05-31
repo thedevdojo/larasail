@@ -6,11 +6,13 @@ LaraSail is a CLI tool for Laravel to help you Sail the servers of the Digital O
 
 ---
 
-You'll need a Digital Ocean Account before getting started ([Signup here](https://m.do.co/c/6e2fb7e2925f)), then you'll need to boot up a new Ubuntu server on Digital Ocean.
+You'll need a Digital Ocean Account before getting started ([Signup here](https://m.do.co/c/6e2fb7e2925f)), then you'll need to create a New Droplet. Make sure to select Ubuntu Server:
 
 <p align="center"><img src="https://s3.amazonaws.com/larasail/ubuntu-server.png"></p>
 
-Next, SSH into your server and run the following command:
+## Installation
+
+SSH into your server and run the following command:
 
 ```
 curl -sL https://github.com/thedevdojo/larasail/archive/master.tar.gz | tar xz && source larasail-master/install
@@ -21,8 +23,6 @@ You can make sure it's installed by running
 ```
 larasail -h
 ```
-
-in the command line.
 
 # Running the setup
 
