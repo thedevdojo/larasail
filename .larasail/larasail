@@ -4,6 +4,8 @@
 if [ "$1" = "-h" ]
 then
     echo "Larasail Help"
+elif [ "$1" = "host" ] ; then
+	sudo sh /etc/.larasail/$1 $2 $3
 else
-    sudo sh /etc/.larasail/$1 $2 $3
+    . /etc/.larasail/$1 $2 $3
 fi
