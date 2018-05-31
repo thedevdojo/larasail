@@ -24,16 +24,16 @@ You can make sure it's installed by running
 larasail -h
 ```
 
-# Running the setup
+# Setup
 
 ```
-larasail run
+larasail setup
 ```
 
 The default configuration will install Nginx, PHP7.2, and MySQL 5.7. If you wish to use PHP7.1, you can include the argument `php71` like so:
 
 ```
-larasail run php71
+larasail setup php71
 ```
 
 
