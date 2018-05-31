@@ -44,9 +44,7 @@ You can now Clone a Repo or Create a New Laravel app within the `/var/www` folde
 cd /var/www && laravel new website
 ```
 
-## Setting up a new Virtual Host
-
-You can setup a new virtual host by running:
+Then, you'll need to setup a new Nginx Host by running:
 
 ```
 larasail host website.com /var/www/website/public
