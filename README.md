@@ -24,7 +24,7 @@ You can make sure it's installed by running
 larasail -h
 ```
 
-# Setup
+## Setup
 
 ```
 larasail setup
