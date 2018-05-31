@@ -90,8 +90,6 @@ bar
 cyan "| Adding the Laravel Installer "
 bar
 
-echo "export PATH=~/.composer/vendor/bin:\$PATH" >> ~/.bashrc
-export PATH=~/.composer/vendor/bin:$PATH
 sudo chown -R $USER:$USER ~/.composer/
 composer global require "laravel/installer"
 

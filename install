@@ -25,6 +25,7 @@ echo "| Prepare the Sails, we're ready for the Open Sea!";
 barNoColor
 
 echo "alias larasail='sh /etc/.larasail/larasail'" >> /home/larasail/.bashrc
+echo "export PATH=~/.composer/vendor/bin:\$PATH" >> /home/larasail/.bashrc
 
 rm -rf larasail-master
 
