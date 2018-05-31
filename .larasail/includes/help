@@ -1,0 +1,23 @@
+#!/bin/bash
+
+Color_Off="\033[0m"     # Text Reset
+Yellow="\033[33m"       # Yellow
+
+echo "${Yellow}Description:${Color_Off}"
+echo "  LaraSail is a CLI for building Laravel ready servers on Digital Ocean"
+echo ""
+
+echo "${Yellow}Usage:${Color_Off}"
+echo "  larasail $arguments"
+echo ""
+
+echo "${Yellow}Arguments:${Color_Off}"
+echo "  ${Yellow}setup${Color_Off}              Setup a new server with Nginx, PHP 7.2, and MySQL 5.7"
+echo "  ${Yellow}setup php71${Color_Off}        Setup a new server with Nginx, PHP 7.1, and MySQL 5.7"
+echo "  ${Yellow}host${Color_Off}               Create a new Nginx host"
+echo "  ${Yellow}host \$1 \$2${Color_Off}         \$1=domain, \$2=folder_location (ex. larasail host url.com /var/www/folder)"
+echo "  ${Yellow}pass${Color_Off}               Display the larasail user password"
+echo "  ${Yellow}mysqlpass${Color_Off}.         Display the MySQL password"
+
+
+#. /etc/.larasail/includes/colors

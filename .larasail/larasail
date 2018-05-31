@@ -3,7 +3,7 @@
 
 if [ "$1" = "-h" ]
 then
-    echo "Larasail Help"
+    . /etc/.larasail/includes/help
 elif [ "$1" = "host" ] ; then
 	sudo sh /etc/.larasail/$1 $2 $3
 else

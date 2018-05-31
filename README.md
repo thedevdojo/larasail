@@ -43,13 +43,13 @@ larasail setup php71
 You can now Clone a Repo or Create a New Laravel app within the `/var/www` folder:
 
 ```
-cd /var/www && laravel new website
+cd /var/www && laravel new mywebsite
 ```
 
 Then, you'll need to setup a new Nginx Host by running:
 
 ```
-larasail host website.com /var/www/website/public
+larasail host mywebsite.com /var/www/mywebsite
 ```
 
 `larasail host` accepts 2 parameters:
