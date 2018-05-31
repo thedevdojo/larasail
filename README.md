@@ -1,3 +1,5 @@
+<p align="center"><img src="https://s3.amazonaws.com/larasail/logo.svg"></p>
+
 # LaraSail
 
 LaraSail is a CLI tool for Laravel to help you Sail the servers of the Digital Ocean

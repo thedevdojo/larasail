@@ -74,14 +74,17 @@ sudo apt-get install -y php$PHP php$PHP-common php$PHP-mysql php$PHP-gd php$PHP-
 sudo rm /usr/bin/php
 sudo ln -s /usr/bin/php$PHP /usr/bin/php
 
+bar
+cyan "| Updating Permissions "
+bar
+
+sudo chown -R larasail:larasail /var/www
 
 bar
 cyan "| Installing Composer ";
 bar
 
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-
-chown -R $USER:$USER /var/www
 
 bar
 cyan "| Adding the Laravel Installer "
@@ -90,8 +93,11 @@ bar
 echo "export PATH=~/.composer/vendor/bin:\$PATH" >> ~/.bashrc
 sudo chown -R $USER:$USER ~/.composer/
 composer global require "laravel/installer"
-# alias laravel=/home/larasail/.composer/vendor/bin/laravel
-
-sudo chown -R larasail:larasail /var/www
-
 . /home/larasail/.bashrc
+
+setsail
+
+bar
+cyan "| Happy Sailing! "
+bar
+
