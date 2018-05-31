@@ -1,4 +1,4 @@
-<p align="center"><img src="https://s3.amazonaws.com/larasail/logo.svg"></p>
+<p align="center"><img src="https://s3.amazonaws.com/larasail/logo.svg" width="300"></p>
 
 # LaraSail
 
