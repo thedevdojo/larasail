@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#/
+#--------------------------------------------------------------------------
+# Larasail Mysql Password
+#--------------------------------------------------------------------------
+#
+# This file will display the MySQL password
+#
+#/
+
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
 
