@@ -1,32 +1,55 @@
 #!/bin/bash
 
+#/
+#--------------------------------------------------------------------------
+# Install Larasail
+#--------------------------------------------------------------------------
+#
+# This part of the script will move a few files to the necessary locations,
+# add a new user 'larasail', and add aliases for the CLI
+#
+#/
+
+
+# Move the files to /etc/.larasail and create a root larasail alias
 mv larasail-master/.larasail /etc/.larasail
 echo "alias larasail='sh /etc/.larasail/larasail'" >> /etc/bash.bashrc
 
+
+# Create a new password and create our new larasail user
 PASS=$(openssl rand -base64 32)
-
-if [ ! -d /etc/.larasail/tmp ]; then
-  sudo mkdir /etc/.larasail/tmp
-fi
-
-sudo echo $PASS > /etc/.larasail/tmp/pass
-
 useradd -G sudo -d /home/larasail -p $PASS -m larasail
+
+
+# Give the larasail user ability to not always require password
 echo 'larasail ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 chown -R larasail:larasail /etc/.larasail/
 
+
+# Store the larasail user password
+if [ ! -d /etc/.larasail/tmp ]; then
+  sudo mkdir /etc/.larasail/tmp
+fi
+sudo echo $PASS > /etc/.larasail/tmp/pass
+
+
+# Include our colors and format scripts
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
 
-setsailNoColor
 
+# Add larasail alias to larasail bashrc and the bin path dir for composer
+echo "alias larasail='sh /etc/.larasail/larasail'" >> /home/larasail/.bashrc
+echo "export PATH=~/.composer/vendor/bin:\$PATH" >> /home/larasail/.bashrc
+
+
+# Show message after successfully installing
+setsailNoColor
 barNoColor
 echo "| Prepare the Sails, we're ready for the Open Sea!";
 barNoColor
 
-echo "alias larasail='sh /etc/.larasail/larasail'" >> /home/larasail/.bashrc
-echo "export PATH=~/.composer/vendor/bin:\$PATH" >> /home/larasail/.bashrc
 
+# Remove larasail folder pulled from git repo and switch user to larasail
 rm -rf larasail-master
-
 su - larasail

@@ -1,5 +1,13 @@
 #!/bin/bash
-# Include the first argument as a script
+
+#/
+#--------------------------------------------------------------------------
+# Larasail Main File
+#--------------------------------------------------------------------------
+#
+# This file will pass the argument to the necessary script.
+#
+#/
 
 if [ "$1" = "-h" ]
 then

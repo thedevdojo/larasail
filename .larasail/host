@@ -1,5 +1,21 @@
 #!/bin/bash
 
+#/
+#--------------------------------------------------------------------------
+# Larasail Host
+#--------------------------------------------------------------------------
+#
+# This command will create a new nginx host file for a specific domain
+# pass the website domain and the folder location, here's an example:
+# 
+# $ larasail host mywebsite.com /var/www/mywebsite
+#
+# The above command will create a new nginx host that will listen
+# for a connection coming from mywebsite.com and map it to the
+# /var/www/mywebsite/public folder
+#
+#/
+
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
 

@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#/
+#--------------------------------------------------------------------------
+# Larasail User Password
+#--------------------------------------------------------------------------
+#
+# This file will display the Larasail user password
+#
+#/
+
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
 
