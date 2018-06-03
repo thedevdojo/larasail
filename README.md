@@ -58,3 +58,26 @@ larasail host mywebsite.com /var/www/mywebsite
 2. The location of the files for your site *(/var/www/website/public)*
 
 Finally, point your Domain to the IP address of your new server... And Wallah, you're ready to rock 🤘 with your new Laravel website.
+
+## Passwords
+
+When installing and setting up Larasail there are 2 passwords that are randomly generated.
+
+1. The password for the new larasail user created on the server.
+2. The default MySQL password
+
+To get the `larasail` user password you can type in the following command:
+
+```
+larasail pass
+```
+
+And the password for the `larasail` user will be displayed. Next, to get the default MySQL root password you can type the following command:
+
+```
+larasail mysqlpass
+```
+
+And the MySQL root password will be displayed.
+
+Make sure to star this repo and watch this repo for future updates. Thanks for checking out Larasail ⛵
