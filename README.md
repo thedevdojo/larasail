@@ -80,4 +80,12 @@ larasail mysqlpass
 
 And the MySQL root password will be displayed.
 
+## Switching to Larasail user
+
+When you SSH into your server you may want to Switch Users back to the larasail user, You can do so with the following command:
+
+```
+su - larasail
+```
+
 Make sure to star this repo and watch this repo for future updates. Thanks for checking out Larasail ⛵

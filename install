@@ -25,6 +25,12 @@ useradd -G sudo -d /home/larasail -p $PASS -m larasail
 echo 'larasail ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 
+# Turn on SSH Passwords
+# sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+# echo -n 'AllowUsers larasail' >> /etc/ssh/sshd_config
+# service ssh reload
+
+
 # Store the larasail user password
 if [ ! -d /etc/.larasail/tmp ]; then
   sudo mkdir /etc/.larasail/tmp
