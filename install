@@ -18,7 +18,7 @@ echo "alias larasail='sh /etc/.larasail/larasail'" >> /etc/bash.bashrc
 
 # Create a new password and create our new larasail user
 PASS=$(openssl rand -base64 32)
-useradd -G sudo -d /home/larasail -p $PASS -m larasail
+useradd -G sudo -d /home/larasail -p $PASS -m larasail -s /bin/bash
 
 
 # Give the larasail user ability to not always require password
