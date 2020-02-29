@@ -24,6 +24,7 @@ useradd -G sudo -d /home/larasail -p $PASS -m larasail
 # Give the larasail user ability to not always require password
 echo 'larasail ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
+usermod -s /bin/bash larasail
 
 # Turn on SSH Passwords
 # sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
