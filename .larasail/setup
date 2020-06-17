@@ -98,14 +98,14 @@ if [ $CHECK_SWAP -lt 1 ] ; then
     bar
 
     # Create a swap file
-    fallocate -l 1G /swapfile
-    chmod 600 /swapfile
-    mkswap /swapfile
-    swapon /swapfile
+    sudo fallocate -l 1G /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
 
     # Making the swap file permanent
-    cp /etc/fstab /etc/fstab.bak
-    echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+    sudo cp /etc/fstab /etc/fstab.bak
+    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 fi
 
 
