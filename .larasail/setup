@@ -91,6 +91,24 @@ bar
 
 sudo chown -R larasail:larasail /var/www
 
+CHECK_SWAP=$(swapon -s | wc -l)
+if [ $CHECK_SWAP -lt 1 ] ; then
+    bar
+    cyan "| Adding swap file "
+    bar
+
+    # Create a swap file
+    fallocate -l 1G /swapfile
+    chmod 600 /swapfile
+    mkswap /swapfile
+    swapon /swapfile
+
+    # Making the swap file permanent
+    cp /etc/fstab /etc/fstab.bak
+    echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+fi
+
+
 bar
 cyan "| Installing Composer ";
 bar
