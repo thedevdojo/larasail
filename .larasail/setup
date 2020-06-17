@@ -53,9 +53,11 @@ echo "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS" | s
 
 sudo apt-get install -y mysql-server
 
+# Get current client IP address
+CLIENT_IP=$(echo $SSH_CLIENT | awk '{ print $1}')
+
 # Enable 3306 ports in order to connect to database via Sequel Pro
-enable port 3306
-sudo ufw allow from 15.15.15.0/24 to any port 3306
+sudo ufw allow from ${CLIENT_IP}/32 to any port 3306
 
 
 bar
@@ -108,7 +110,7 @@ bar
 
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
-sudo apt-get install python-certbot-nginx
+sudo apt-get -y install python-certbot-nginx
 
 setsail
 
