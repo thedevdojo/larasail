@@ -130,4 +130,13 @@ ln -s $sitesAvailable$configName $sitesEnable$configName
 service nginx restart
 
 echo "Complete! \nYou now have a new Virtual Host \nYour new host is: http://$domain \nAnd its located at $rootPath"
+
+echo "Would you like to install Let's Encrypt SSL for ${domain}?"
+echo "[yes/no]"
+read letsencrypt
+
+if [ "$letsencrypt" = "yes" ]; then
+	sudo certbot --nginx -d ${domain} -d www.${domain}
+fi
+
 exit;
