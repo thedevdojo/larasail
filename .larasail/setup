@@ -12,9 +12,11 @@
 . /etc/.larasail/includes/colors
 . /etc/.larasail/includes/format
 
-PHP="7.3"
+PHP="7.4"
 
-if [ "$1" = "php72" ]; then
+if [ "$1" = "php73" ]; then
+   PHP="7.3"
+elif [ "$1" = "php72" ]; then
    PHP="7.2"
 elif [ "$1" = "php71" ]; then
    PHP="7.1"
