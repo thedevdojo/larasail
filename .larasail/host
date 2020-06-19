@@ -97,7 +97,7 @@ if ! echo "server {
 
         index index.php index.html index.htm;
 
-        server_name $domain;
+        server_name $domain www.$domain;
 
         location / {
                 try_files \$uri \$uri/ /index.php?\$query_string;
