@@ -91,3 +91,7 @@ su - larasail
 ```
 
 Make sure to star this repo and watch this repo for future updates. Thanks for checking out Larasail ⛵
+
+## Contributing
+
+If you are contributing, please read the [contributing file](CONTRIBUTING.md) before submitting your pull requests.
