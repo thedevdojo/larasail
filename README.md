@@ -48,6 +48,12 @@ You can now Clone a Repo or Create a New Laravel app within the `/var/www` folde
 cd /var/www && laravel new mywebsite
 ```
 
+If you want to include [Laravel Jetstream][https://jetstream.laravel.com/) into your project, you need to specify the `--jet` option:
+
+```
+cd /var/www && laravel new mywebsite --jet
+```
+
 Then, you'll need to setup a new Nginx Host by running:
 
 ```
