@@ -1,0 +1,171 @@
+#!/bin/bash
+
+#/
+#--------------------------------------------------------------------------
+# Larasail Database Manager
+#--------------------------------------------------------------------------
+#
+# This command gives the ability to create & manage database
+# for a Larasail project.
+#
+# Default database user and password are: 'larasail'.
+# You are free to change them with --user & --db flags.
+#
+# Upon successful database creation this command also tries
+# to update .env in the current directory if it is present.
+#
+#/
+
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
+
+FORCE_INIT=false
+
+DATABASE_USER=larasail
+DATABASE_NAME=larasail
+DATABASE_PASSWORD="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 14 | head -n 1)"
+
+shift
+
+create_database_details() {
+
+    # Generate temporary mysql config file to avoid password exposure
+
+    ROOT_PASSWORD=$(cat /etc/.larasail/tmp/mysqlpass)
+
+    echo "[client]" >> "/etc/.larasail/tmp/mysql.cnf"
+    echo "password=$ROOT_PASSWORD" >> "/etc/.larasail/tmp/mysql.cnf"
+
+    echo "$DATABASE_NAME:$DATABASE_PASSWORD" > "/etc/.larasail/tmp/$DATABASE_USER.dbpass"
+
+    # Try to create a new database
+
+    if $FORCE_INIT; then
+        printf "${Red}WARNING: This will remove existing database and user!\n${Color_Off}Are you sure? [y/N] "
+        read ANSWER
+        case $ANSWER in
+            Y|y)
+                mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
+                -e "DROP DATABASE $DATABASE_NAME"
+                mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
+                -e "DROP USER $DATABASE_USER"
+                ;;
+            *)
+                echo "You answered 'no', stopping here."
+                exit 1
+        esac
+    fi
+
+    mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
+    -e "CREATE DATABASE $DATABASE_NAME DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
+    STATUS=$?
+
+    if [ $STATUS -gt 0 ]; then
+        echo "${Red}ERROR:${Color_Off} Unable to create database '$DATABASE_NAME' (possible duplicate)"
+        return 1
+    fi
+
+    # Try to create a new user
+
+    mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
+    -e "CREATE USER '$DATABASE_USER'@'%' IDENTIFIED WITH mysql_native_password BY '$DATABASE_PASSWORD';"
+    STATUS=$?
+
+    mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
+    -e "GRANT ALL ON $DATABASE_NAME.* TO '$DATABASE_USER'@'%';"
+
+    if [ $STATUS -gt 0 ]; then
+        echo "${Red}ERROR:${Color_Off} Unable to create user '$DATABASE_USER' (possible duplicate)"
+        return 1
+    fi
+}
+
+case $1 in
+    'init')
+        shift
+
+        while [ $# -gt 0 ]; do
+            case $1 in
+                -u|--user)
+                    if [ $# -gt 1 ]; then
+                        DATABASE_USER="$2"
+                        shift
+                    fi
+                    ;;
+                -d|--db)
+                    if [ $# -gt 1 ]; then
+                        DATABASE_NAME="$2"
+                        shift
+                    fi
+                    ;;
+                -f|--force)
+                    FORCE_INIT=true
+                    ;;
+            esac
+            shift
+        done
+
+        create_database_details
+
+        if [ $? -eq 0 ]; then
+
+            setsail
+
+            bar
+            cyan "| MySQL password for user '$DATABASE_USER' on database '$DATABASE_NAME':"
+            cyan "| $DATABASE_PASSWORD"
+            bar
+
+            #
+            # Try to update .env file in current directory
+            #
+
+            if [ -f .env ]; then
+                value="$DATABASE_NAME" \
+                perl -i -pe 's/^(?!#)(\s*DB_DATABASE)=.*/$1=$ENV{value}/' .env
+
+                value="$DATABASE_USER" \
+                perl -i -pe 's/^(?!#)(\s*DB_USERNAME)=.*/$1=$ENV{value}/' .env
+
+                value="$DATABASE_PASSWORD" \
+                perl -i -pe 's/^(?!#)(\s*DB_PASSWORD)=.*/$1=$ENV{value}/' .env
+
+                echo "${Green}SUCCESS:${Color_Off} Updated .env with database credentials"
+            fi
+
+        else
+            echo "${Yellow}INFO:${Color_Off} You can force new database creation with the same name by using ${Yellow}--force${Color_Off} flag"
+        fi
+
+        rm -f "/etc/.larasail/tmp/mysql.cnf"
+        ;;
+    'pass')
+        shift
+
+        setsail
+
+        for FILE in /etc/.larasail/tmp/*.dbpass; do
+            USER=$(basename $FILE)
+            USER=${USER%.dbpass}
+
+            CONTENT="$(cat $FILE)"
+            NAME=${CONTENT%:*} # everything before ':'
+            PASSWORD=${CONTENT#*:} # everything after ':'
+
+            bar
+            cyan "| MySQL password for user '$USER' on database '$NAME':"
+            cyan "| $PASSWORD"
+        done
+
+        bar
+        exit
+        ;;
+    *)
+        echo "${Yellow}Usage:${Color_Off}"
+        echo "  larasail database <command>"
+        echo ""
+        echo "${Yellow}Commands:${Color_Off}"
+        echo "  ${Yellow}init${Color_Off} [--user NAME] [--db NAME] [--force]\tCreate larasail database, user & populate .env file"
+        echo "  ${Yellow}pass${Color_Off}                                    \tRetrieve current database password"
+        exit
+esac
