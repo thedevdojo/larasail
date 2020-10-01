@@ -9,7 +9,7 @@
 #
 #/
 
-if [ "$1" = "-h" ]
+if [ "$1" = "-h" ] || [ -z $1 ]
 then
     . /etc/.larasail/includes/help
 elif [ "$1" = "host" ] ; then
