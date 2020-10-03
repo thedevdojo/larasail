@@ -36,7 +36,7 @@ create_database_details() {
     echo "[client]" >> "/etc/.larasail/tmp/mysql.cnf"
     echo "password=$ROOT_PASSWORD" >> "/etc/.larasail/tmp/mysql.cnf"
 
-    echo "$DATABASE_NAME:$DATABASE_PASSWORD" > "/etc/.larasail/tmp/$DATABASE_USER.dbpass"
+    echo "$DATABASE_PASSWORD" > "/etc/.larasail/tmp/$DATABASE_USER.$DATABASE_NAME.dbpass"
 
     # Try to create a new database
 
@@ -145,12 +145,12 @@ case $1 in
         setsail
 
         for FILE in /etc/.larasail/tmp/*.dbpass; do
-            USER=$(basename $FILE)
-            USER=${USER%.dbpass}
+            ENTRY=$(basename $FILE)
+            ENTRY=${ENTRY%.dbpass}
 
-            CONTENT="$(cat $FILE)"
-            NAME=${CONTENT%:*} # everything before ':'
-            PASSWORD=${CONTENT#*:} # everything after ':'
+            USER=${ENTRY%.*} # everything before '.'
+            NAME=${ENTRY#*.} # everything after '.'
+            PASSWORD="$(cat $FILE)"
 
             bar
             cyan "| MySQL password for user '$USER' on database '$NAME':"
