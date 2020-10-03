@@ -78,11 +78,9 @@ sudo apt-get -y upgrade
 
 #required for PHP7.2 mcrypt
 sudo apt-get -y install gcc make autoconf libc-dev pkg-config
-sudo apt-get -y install libmcrypt-dev
 
 sudo apt-get install -y unzip
 sudo apt-get install -y php-cli
-sudo apt-get install -y php7.1-mcrypt
 sudo apt-get install -y php$PHP-cli php$PHP-common php$PHP-mysql php$PHP-gd php$PHP-mysql php$PHP-curl php$PHP-mbstring php$PHP-xml php$PHP-zip php$PHP-fpm curl git
 
 sudo rm /usr/bin/php
