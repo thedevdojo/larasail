@@ -7,7 +7,7 @@
 #
 # This command will create a new nginx host file for a specific domain
 # pass the website domain and the folder location, here's an example:
-# 
+#
 # $ larasail host mywebsite.com /var/www/mywebsite
 #
 # The above command will create a new nginx host that will listen
@@ -120,7 +120,7 @@ if ! echo "server {
         location ~ /\.ht {
                 deny all;
         }
-        
+
 }" > $sitesAvailable$configName
 then
 	echo "There is an ERROR create $configName file"
