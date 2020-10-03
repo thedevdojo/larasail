@@ -14,35 +14,35 @@ Cyan="\033[36m"         # Cyan
 White="\033[37m"        # White
 
 black(){
-    echo "${Black}$1${Color_Off}"
+    printf "${Black}$1${Color_Off}\n"
 }
 
 red(){
-    echo "${Red}$1${Color_Off}"
+    printf "${Red}$1${Color_Off}\n"
 }
 
 green(){
-    echo "${Green}$1${Color_Off}"
+    printf "${Green}$1${Color_Off}\n"
 }
 
 yellow(){
-    echo "${Yellow}$1${Color_Off}"
+    printf "${Yellow}$1${Color_Off}\n"
 }
 
 blue(){
-    echo "${Blue}$1${Color_Off}"
+    printf "${Blue}$1${Color_Off}\n"
 }
 
 purple(){
-    echo "${Purple}$1${Color_Off}"
+    printf "${Purple}$1${Color_Off}\n"
 }
 
 cyan(){
-    echo "${Cyan}$1${Color_Off}"
+    printf "${Cyan}$1${Color_Off}\n"
 }
 
 white(){
-    echo "${White}$1${Color_Off}"
+    printf "${White}$1${Color_Off}\n"
 }
 
 # Bold
@@ -56,35 +56,35 @@ BCyan="\033[1;36m"      # Cyan
 BWhite="\033[1;37m"     # White
 
 blackb(){
-    echo "${BBlack}$1${Color_Off}"
+    printf "${BBlack}$1${Color_Off}\n"
 }
 
 redb(){
-    echo "${BRed}$1${Color_Off}"
+    printf "${BRed}$1${Color_Off}\n"
 }
 
 greenb(){
-    echo "${BGreen}$1${Color_Off}"
+    printf "${BGreen}$1${Color_Off}\n"
 }
 
 yellowb(){
-    echo "${BYellow}$1${Color_Off}"
+    printf "${BYellow}$1${Color_Off}\n"
 }
 
 blueb(){
-    echo "${BBlue}$1${Color_Off}"
+    printf "${BBlue}$1${Color_Off}\n"
 }
 
 purpleb(){
-    echo "${BPurple}$1${Color_Off}"
+    printf "${BPurple}$1${Color_Off}\n"
 }
 
 cyanb(){
-    echo "${BCyan}$1${Color_Off}"
+    printf "${BCyan}$1${Color_Off}\n"
 }
 
 whiteb(){
-    echo "${BWhite}$1${Color_Off}"
+    printf "${BWhite}$1${Color_Off}\n"
 }
 
 # Underline
@@ -98,35 +98,35 @@ UCyan="\e[4;36m"        # Cyan
 UWhite="\e[4;37m"       # White
 
 blacku(){
-    echo "${UBlack}$1${Color_Off}"
+    printf "${UBlack}$1${Color_Off}\n"
 }
 
 redu(){
-    echo "${URed}$1${Color_Off}"
+    printf "${URed}$1${Color_Off}\n"
 }
 
 greenu(){
-    echo "${UGreen}$1${Color_Off}"
+    printf "${UGreen}$1${Color_Off}\n"
 }
 
 yellowu(){
-    echo "${UYellow}$1${Color_Off}"
+    printf "${UYellow}$1${Color_Off}\n"
 }
 
 blueu(){
-    echo "${UBlue}$1${Color_Off}"
+    printf "${UBlue}$1${Color_Off}\n"
 }
 
 purpleu(){
-    echo "${UPurple}$1${Color_Off}"
+    printf "${UPurple}$1${Color_Off}\n"
 }
 
 cyanu(){
-    echo "${UCyan}$1${Color_Off}"
+    printf "${UCyan}$1${Color_Off}\n"
 }
 
 whiteu(){
-    echo "${UWhite}$1${Color_Off}"
+    printf "${UWhite}$1${Color_Off}\n"
 }
 
 # Background
@@ -140,34 +140,34 @@ On_Cyan="\033[46m"      # Cyan
 On_White="\033[47m"     # White
 
 blackbg(){
-    echo "${On_Black}$1${Color_Off}"
+    printf "${On_Black}$1${Color_Off}\n"
 }
 
 redbg(){
-    echo "${On_Red}$1${Color_Off}"
+    printf "${On_Red}$1${Color_Off}\n"
 }
 
 greenbg(){
-    echo "${On_Green}$1${Color_Off}"
+    printf "${On_Green}$1${Color_Off}\n"
 }
 
 yellowbg(){
-    echo "${On_Yellow}$1${Color_Off}"
+    printf "${On_Yellow}$1${Color_Off}\n"
 }
 
 bluebg(){
-    echo "${On_Blue}$1${Color_Off}"
+    printf "${On_Blue}$1${Color_Off}\n"
 }
 
 purplebg(){
-    echo "${On_Purple}$1${Color_Off}"
+    printf "${On_Purple}$1${Color_Off}\n"
 }
 
 cyanbg(){
-    echo "${On_Cyan}$1${Color_Off}"
+    printf "${On_Cyan}$1${Color_Off}\n"
 }
 
 whitebg(){
-    echo "${On_White}$1${Color_Off}"
+    printf "${On_White}$1${Color_Off}\n"
 }
 
