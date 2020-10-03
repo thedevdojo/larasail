@@ -64,9 +64,9 @@ create_database_details() {
         case $ANSWER in
             Y|y)
                 mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
-                -e "DROP DATABASE $DATABASE_NAME"
+                -e "DROP DATABASE IF EXISTS $DATABASE_NAME"
                 mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
-                -e "DROP USER $DATABASE_USER"
+                -e "DROP USER IF EXISTS $DATABASE_USER"
                 ;;
             *)
                 echo "You answered 'no', stopping here."
