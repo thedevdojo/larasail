@@ -22,7 +22,9 @@
 FORCE_INIT=false
 
 DATABASE_USER=larasail
+DATABASE_USER_PROMPT=true
 DATABASE_NAME=larasail
+DATABASE_NAME_PROMPT=true
 DATABASE_PASSWORD="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 14 | head -n 1)"
 
 shift
@@ -35,6 +37,22 @@ create_database_details() {
 
     echo "[client]" >> "/etc/.larasail/tmp/mysql.cnf"
     echo "password=$ROOT_PASSWORD" >> "/etc/.larasail/tmp/mysql.cnf"
+
+    if $DATABASE_USER_PROMPT; then
+        printf "Please enter ${Yellow}database user${Color_Off} to create [${Cyan}$DATABASE_USER${Color_Off}]: "
+        read ANSWER
+        if ! [ -z "$ANSWER" ]; then
+            DATABASE_USER="$ANSWER"
+        fi
+    fi
+
+    if $DATABASE_NAME_PROMPT; then
+        printf "Please enter ${Yellow}database name${Color_Off} to create [${Cyan}$DATABASE_NAME${Color_Off}]: "
+        read ANSWER
+        if ! [ -z "$ANSWER" ]; then
+            DATABASE_NAME="$ANSWER"
+        fi
+    fi
 
     echo "$DATABASE_PASSWORD" > "/etc/.larasail/tmp/$DATABASE_USER.$DATABASE_NAME.dbpass"
 
@@ -88,12 +106,14 @@ case $1 in
             case $1 in
                 -u|--user)
                     if [ $# -gt 1 ]; then
+                        DATABASE_USER_PROMPT=false
                         DATABASE_USER="$2"
                         shift
                     fi
                     ;;
                 -d|--db)
                     if [ $# -gt 1 ]; then
+                        DATABASE_NAME_PROMPT=false
                         DATABASE_NAME="$2"
                         shift
                     fi
