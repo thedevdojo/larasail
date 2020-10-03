@@ -14,11 +14,11 @@
 
 PHP="7.4"
 
-if [ "$1" = "php73" ]; then
+if [ "$2" = "php73" ]; then
    PHP="7.3"
-elif [ "$1" = "php72" ]; then
+elif [ "$2" = "php72" ]; then
    PHP="7.2"
-elif [ "$1" = "php71" ]; then
+elif [ "$2" = "php71" ]; then
    PHP="7.1"
 fi
 
