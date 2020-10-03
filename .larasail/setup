@@ -126,6 +126,12 @@ sudo chown -R $USER:$USER ~/.composer/
 composer global require "laravel/installer"
 
 bar
+cyan "| Adding Prestissimo "
+bar
+
+composer global require hirak/prestissimo
+
+bar
 cyan "| Installing certbot ";
 bar
 
