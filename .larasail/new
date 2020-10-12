@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#/
+#--------------------------------------------------------------------------
+# Larasail Project Creator
+#--------------------------------------------------------------------------
+#
+# Create a new Laravel project using Larasail
+#
+#/
+
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
+
+shift
+
+if [ -z $1 ]; then
+    echo "Usage: larasail new <project-name> [--jet <livewire|inertia>] [--teams]"
+    echo ""
+    echo "${Cyan}Tip: you can use periods in project name to automatically create a host for it"
+    exit
+fi
+
+PROJECT_PATH="$(echo "/var/www/$1" | sed -e 's/\./_/g')"
+
+# Check if period exists in the project name
+if [ -z "${1##*.*}" ]; then
+    HOST=$1
+fi
+
+shift
+
+INSTALL_JET=false
+JET_WITH_TEAMS=false
+
+while [ $# -gt 0 ]; do
+    case $1 in
+        --jet)
+            if [ $# -gt 1 ]; then
+                INSTALL_JET=true
+                if [ $2 = 'livewire' ] || [ $2 = 'inertia' ]; then
+                    JET_STACK="$2"
+                else
+                    echo "${Red}ERROR${Color_Off}: Unknown jetstream stack: $2"
+                    echo "Possible values: ${Yellow}livewire, inertia"
+                    exit 1
+                fi
+                shift
+            else
+                echo "${Red}ERROR${Color_Off}: --jet requires stack name"
+                exit 1
+            fi
+            ;;
+        --teams)
+            JET_WITH_TEAMS=true
+            ;;
+    esac
+    shift
+done
+
+composer create-project --prefer-dist laravel/laravel "$PROJECT_PATH"
+
+if [ -n $HOST ]; then
+    echo "Setting up host '$HOST'..."
+    sudo bash /etc/.larasail/host "$HOST" "$PROJECT_PATH"
+fi
+
+if $INSTALL_JET; then
+    echo "Installing Laravel Jetstream with $JET_STACK..."
+    cd $PROJECT_PATH
+    composer require laravel/jetstream
+    if $JET_WITH_TEAMS; then
+        php artisan jetstream:install $JET_STACK --teams
+    else
+        php artisan jetstream:install $JET_STACK
+    fi
+fi
+
+cyan "Tip: Run \"cd $PROJECT_PATH\" to go into project directory."
+cyan "Tip: Run \"larasail database init\" in project directory to create a database."

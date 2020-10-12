@@ -42,7 +42,19 @@ larasail setup php73 # Install with PHP 7.3
 
 ## Creating a New Site
 
-You can now Clone a Repo or Create a New Laravel app within the `/var/www` folder:
+### :sparkles: Automatically
+
+After setting up the server you can create a new project automatically by running:
+
+```
+larasail new <project-name> [--jet <livewire|inertia>] [--teams]
+```
+
+This will automatically create a project folder in `/var/www` and set up a host if provided project name contains periods (they will be replaced with underscores for the directory name).
+
+### :construction: Manually
+
+Alternatively, you can Clone a Repo or Create a New Laravel app within the `/var/www` folder:
 
 ```
 cd /var/www && laravel new mywebsite
