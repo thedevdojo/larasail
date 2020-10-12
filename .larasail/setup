@@ -46,7 +46,9 @@ if [ ! -d /etc/.larasail/tmp ]; then
   mkdir /etc/.larasail/tmp
 fi
 
-echo $MYSQLPASS > /etc/.larasail/tmp/mysqlpass
+echo $MYSQLPASS > /home/larasail/.my.cnf
+
+chmod 600 /home/larasail/.my.cnf
 
 
 echo "mysql-server mysql-server/root_password password $MYSQLPASS" | sudo debconf-set-selections
