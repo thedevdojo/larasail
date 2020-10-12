@@ -88,6 +88,25 @@ larasail mysqlpass
 
 And the MySQL root password will be displayed.
 
+## Creating database
+
+After you have created your project you can create additional database and user for it using the following command:
+
+```
+larasail database init [--user larasail] [--db larasail] [--force]
+```
+
+By default it will create user and database `larasail` and grant all permissions to that user.
+
+**TIP**: If you are in the project directory when you run this command, it will also try to update `.env` file
+with newly generated credentials.
+
+After you have created databases, you can show newly generated passwords using the following command:
+
+```
+larasail database pass
+```
+
 ## Switching to Larasail user
 
 When you SSH into your server you may want to Switch Users back to the larasail user, You can do so with the following command:

@@ -20,6 +20,7 @@ echo "  ${Yellow}host${Color_Off}               Create a new Nginx host"
 echo "  ${Yellow}host \$1 \$2${Color_Off}         \$1=domain, \$2=folder_location (ex. larasail host url.com /var/www/folder)"
 echo "  ${Yellow}pass${Color_Off}               Display the larasail user password"
 echo "  ${Yellow}mysqlpass${Color_Off}.         Display the MySQL password"
+echo "  ${Yellow}database${Color_Off}           Database management"
 
 
 #. /etc/.larasail/includes/colors
