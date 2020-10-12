@@ -47,7 +47,7 @@ sudo chown -R larasail:larasail /etc/.larasail/tmp
 
 # Add larasail alias to larasail bashrc and the bin path dir for composer
 echo "alias larasail='sh /etc/.larasail/larasail'" >> /home/larasail/.bashrc
-echo "export PATH=~/.composer/vendor/bin:\$PATH" >> /home/larasail/.bashrc
+echo "export PATH=~/.config/composer/vendor/bin:~/.composer/vendor/bin:\$PATH" >> /home/larasail/.bashrc
 
 
 # Show message after successfully installing
