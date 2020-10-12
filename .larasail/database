@@ -151,6 +151,7 @@ case $1 in
                 perl -i -pe 's/^(?!#)(\s*DB_PASSWORD)=.*/$1=$ENV{value}/' .env
 
                 echo "${Green}SUCCESS:${Color_Off} Updated .env with database credentials"
+                echo "${Green}Tip:${Color_Off} Do not forget to run 'php artisan migrate'"
             fi
 
         else
