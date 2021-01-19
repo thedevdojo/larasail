@@ -14,7 +14,7 @@
 
 setsail
 
-MYSQLPASS=$(cat /etc/.larasail/tmp/mysqlpass)
+MYSQLPASS=$(cat /home/larasail/.my.cnf)
 
 bar
 cyan "| MySQL Password:"

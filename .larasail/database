@@ -33,7 +33,7 @@ create_database_details() {
 
     # Generate temporary mysql config file to avoid password exposure
 
-    ROOT_PASSWORD=$(cat /etc/.larasail/tmp/mysqlpass)
+    ROOT_PASSWORD=$(cat /home/larasail/.my.cnf)
 
     echo "[client]" >> "/etc/.larasail/tmp/mysql.cnf"
     echo "password=$ROOT_PASSWORD" >> "/etc/.larasail/tmp/mysql.cnf"
