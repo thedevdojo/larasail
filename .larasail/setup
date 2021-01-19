@@ -46,7 +46,10 @@ if [ ! -d /etc/.larasail/tmp ]; then
   mkdir /etc/.larasail/tmp
 fi
 
-echo $MYSQLPASS > /home/larasail/.my.cnf
+
+echo '[client]' > /home/larasail/.my.cnf
+echo 'user=root' >> /home/larasail/.my.cnf
+echo 'password='${MYSQLPASS} >> /home/larasail/.my.cnf
 
 chmod 600 /home/larasail/.my.cnf
 

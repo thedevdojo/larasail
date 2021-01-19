@@ -14,7 +14,7 @@
 
 setsail
 
-MYSQLPASS=$(cat /home/larasail/.my.cnf)
+MYSQLPASS=$(cat /home/larasail/.my.cnf  | grep password | awk -F'password=' '{print $2}')
 
 bar
 cyan "| MySQL Password:"
