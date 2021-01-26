@@ -13,7 +13,7 @@ echo ""
 
 echo "${Yellow}Arguments:${Color_Off}"
 echo "  ${Yellow}enter${Color_Off}              Enter shell as larasail user"
-echo "  ${Yellow}setup${Color_Off}              Setup a new server with Nginx, PHP 7.4, and MySQL 5.7"
+echo "  ${Yellow}setup${Color_Off}              Setup a new server with Nginx, PHP 7.4, and MySQL 8"
 echo "  ${Yellow}setup php80${Color_Off}        Setup a new server with Nginx, PHP 8.0, and MySQL 5.7"
 echo "  ${Yellow}setup php73${Color_Off}        Setup a new server with Nginx, PHP 7.3, and MySQL 5.7"
 echo "  ${Yellow}setup php72${Color_Off}        Setup a new server with Nginx, PHP 7.2, and MySQL 5.7"
