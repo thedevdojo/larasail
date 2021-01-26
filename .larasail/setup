@@ -14,7 +14,9 @@
 
 PHP="7.4"
 
-if [ "$2" = "php73" ]; then
+if [ "$2" = "php80" ]; then
+   PHP="8.0"
+elif [ "$2" = "php73" ]; then
    PHP="7.3"
 elif [ "$2" = "php72" ]; then
    PHP="7.2"
