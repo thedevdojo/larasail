@@ -38,6 +38,7 @@ The default configuration will install Nginx, PHP 7.4, and MySQL 5.7. If you wis
 larasail setup php71 # Install with PHP 7.1
 larasail setup php72 # Install with PHP 7.2
 larasail setup php73 # Install with PHP 7.3
+larasail setup php80 # Install with PHP 8.0
 ```
 
 ## Creating a New Site
