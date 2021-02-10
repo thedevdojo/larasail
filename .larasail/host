@@ -137,7 +137,7 @@ else
 	echo "New Virtual Host Created"
 fi
 
-if [! echo "127.0.0.1	$domain" >> /etc/hosts
+if ! echo "127.0.0.1	$domain" >> /etc/hosts
 then
 	echo "ERROR: Not able write in /etc/hosts"
 	exit;
