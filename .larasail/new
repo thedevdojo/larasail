@@ -15,7 +15,7 @@
 shift
 
 if [ -z $1 ]; then
-    echo "Usage: larasail new <project-name> [--jet <livewire|inertia>] [--teams]"
+    echo "Usage: larasail new <project-name> [--jet <livewire|inertia>] [--teams] [--www-alias]"
     echo ""
     echo "${Cyan}Tip: you can use periods in project name to automatically create a host for it"
     exit
@@ -32,6 +32,7 @@ shift
 
 INSTALL_JET=false
 JET_WITH_TEAMS=false
+HOST_WITH_WWW_ALIAS=false
 
 while [ $# -gt 0 ]; do
     case $1 in
@@ -54,6 +55,9 @@ while [ $# -gt 0 ]; do
         --teams)
             JET_WITH_TEAMS=true
             ;;
+        --www-alias)
+            HOST_WITH_WWW_ALIAS=true
+            ;;
     esac
     shift
 done
@@ -62,7 +66,12 @@ composer create-project --prefer-dist laravel/laravel "$PROJECT_PATH"
 
 if [ -n $HOST ]; then
     echo "Setting up host '$HOST'..."
-    sudo bash /etc/.larasail/host "$HOST" "$PROJECT_PATH"
+    
+    if $HOST_WITH_WWW_ALIAS; then
+        sudo bash /etc/.larasail/host "$HOST" "$PROJECT_PATH" --www-alias
+    else
+        sudo bash /etc/.larasail/host "$HOST" "$PROJECT_PATH"
+    fi
 fi
 
 if $INSTALL_JET; then
