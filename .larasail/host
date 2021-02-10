@@ -156,7 +156,7 @@ echo "[yes/no]"
 read letsencrypt
 
 if [ "$letsencrypt" = "yes" ]; then
-	sudo certbot --nginx {$certbotDomains}
+	sudo certbot --nginx ${certbotDomains}
 fi
 
 exit;
