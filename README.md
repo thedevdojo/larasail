@@ -48,10 +48,11 @@ larasail setup php80 # Install with PHP 8.0
 After setting up the server you can create a new project automatically by running:
 
 ```
-larasail new <project-name> [--jet <livewire|inertia>] [--teams]
+larasail new <project-name> [--jet <livewire|inertia>] [--teams] [--www-alias]
 ```
 
 This will automatically create a project folder in `/var/www` and set up a host if provided project name contains periods (they will be replaced with underscores for the directory name).
+By default, larasail sets up the Nginx site configuration and Letsencrypt SSL certificate for your domain. If you would like both the `www` alias and root domain setup (i.e `example.com` and `www.example.com`) kindly pass the `--www-alias` flag.
 
 ### :construction: Manually
 
@@ -70,15 +71,17 @@ cd /var/www && laravel new mywebsite --jet
 Then, you'll need to setup a new Nginx Host by running:
 
 ```
-larasail host mywebsite.com /var/www/mywebsite
+larasail host mywebsite.com /var/www/mywebsite --www-alias
 ```
 
-`larasail host` accepts 2 parameters:
+`larasail host` accepts 3 parameters:
 
-1. Your website domain *(website.com)*
-2. The location of the files for your site *(/var/www/website/public)*
+1. Your website domain *(mywebsite.com)*
+2. The location of the files for your site *(/var/www/mywebsite/public)*
+3. Optional flag if you would like to include your project's `www` alias: `www.mywebsite.com` *(--www-alias)*
 
 Finally, point your Domain to the IP address of your new server... And Wallah, you're ready to rock 🤘 with your new Laravel website.
+If you used the `--www-alias` flag, don't forget to add your domain's www `CNAME` record
 
 ## Passwords
 
