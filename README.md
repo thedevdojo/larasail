@@ -2,7 +2,7 @@
 
 # LaraSail
 
-LaraSail is a CLI tool for Laravel to help you Sail the Servers of the DigitalOcean
+LaraSail is a CLI tool for Laravel to help you Sail the Servers of the DigitalOcean.
 
 <p align="center"><img src="https://s3.amazonaws.com/larasail/larasail-command.png"></p>
 
