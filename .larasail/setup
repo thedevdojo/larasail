@@ -68,6 +68,10 @@ echo "mysql-server mysql-server/root_password_again password $MYSQLPASS" | sudo 
 echo "mysql-server-5.7 mysql-server/root_password password $MYSQLPASS" | sudo debconf-set-selections
 echo "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS" | sudo debconf-set-selections
 
+echo "mysql-community-server mysql-community-server/root-pass password ${MYSQLPASS}" | sudo debconf-set-selections
+echo "mysql-community-server mysql-community-server/re-root-pass password ${MYSQLPASS}" | sudo debconf-set-selections
+echo "mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)" | sudo debconf-set-selections
+
 sudo apt-get install -y ${MYSQL_PACKAGE}
 
 # Get current client IP address
