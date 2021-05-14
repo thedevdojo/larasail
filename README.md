@@ -40,6 +40,16 @@ larasail setup php72 # Install with PHP 7.2
 larasail setup php73 # Install with PHP 7.3
 larasail setup php80 # Install with PHP 8.0
 ```
+### Database
+
+By default, larasail will setup the latest version of MySQL. To opt for MariaDB instead, kindly pass `mariadb` to `larasail setup` as the second or third parameter like so:
+
+```
+larasail setup mariadb # will install default php version (7.4) and MariaDB
+larasail setup php80 mariadb # will install the selected php version (8.0 in this case) and MariaDB
+larasail setup mariadb php80 # same as 2 above
+
+```
 
 ## Creating a New Site
 
