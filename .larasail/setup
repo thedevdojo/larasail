@@ -26,6 +26,11 @@ elif [ "$2" = "php71" ] || [ "$3" = "php71" ]; then
    PHP="7.1"
 fi
 
+if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
+   MYSQL_SERVICE="MariaDB"
+   MYSQL_PACKAGE="mariadb-server"
+fi
+
 setsail
 
 
@@ -65,9 +70,6 @@ echo "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS" | s
 
 
 if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
-   MYSQL_SERVICE="MariaDB"
-   MYSQL_PACKAGE="mariadb-server"
-   
    echo "mariadb-server mysql-server/root-pass password ${MYSQLPASS}" | sudo debconf-set-selections
    echo "mariadb-server mysql-server/re-root-pass password ${MYSQLPASS}" | sudo debconf-set-selections
    echo "mariadb-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)" | sudo debconf-set-selections
