@@ -67,11 +67,13 @@ echo "mysql-server-5.7 mysql-server/root_password password $MYSQLPASS" | sudo de
 echo "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS" | sudo debconf-set-selections
 echo "mysql-server mysql-server/root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
 echo "mysql-server mysql-server/re-root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+echo "mysql-server-8.0 mysql-server/root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+echo "mysql-server-8.0 mysql-server/re-root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
 
 
 if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
-   echo "mariadb-server mysql-server/root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
-   echo "mariadb-server mysql-server/re-root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+   echo "mariadb-server-10.3 mysql-server/root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+   echo "mariadb-server-10.3 mysql-server/re-root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
 fi
 
 sudo apt-get install -y ${MYSQL_PACKAGE}
