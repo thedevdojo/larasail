@@ -26,11 +26,6 @@ elif [ "$2" = "php71" ] || [ "$3" = "php71" ]; then
    PHP="7.1"
 fi
 
-if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
-   MYSQL_SERVICE="MariaDB"
-   MYSQL_PACKAGE="mariadb-server"
-fi
-
 setsail
 
 
@@ -62,15 +57,21 @@ echo 'password='${MYSQLPASS} >> /home/larasail/.my.cnf
 
 chmod 600 /home/larasail/.my.cnf
 
-
+export DEBIAN_FRONTEND=noninteractive
 echo "mysql-server mysql-server/root_password password $MYSQLPASS" | sudo debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQLPASS" | sudo debconf-set-selections
 echo "mysql-server-5.7 mysql-server/root_password password $MYSQLPASS" | sudo debconf-set-selections
 echo "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS" | sudo debconf-set-selections
 
-echo "mysql-community-server mysql-community-server/root-pass password ${MYSQLPASS}" | sudo debconf-set-selections
-echo "mysql-community-server mysql-community-server/re-root-pass password ${MYSQLPASS}" | sudo debconf-set-selections
-echo "mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)" | sudo debconf-set-selections
+
+if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
+   MYSQL_SERVICE="MariaDB"
+   MYSQL_PACKAGE="mariadb-server"
+   
+   echo "mariadb-server mysql-server/root-pass password ${MYSQLPASS}" | sudo debconf-set-selections
+   echo "mariadb-server mysql-server/re-root-pass password ${MYSQLPASS}" | sudo debconf-set-selections
+   echo "mariadb-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)" | sudo debconf-set-selections
+fi
 
 sudo apt-get install -y ${MYSQL_PACKAGE}
 
