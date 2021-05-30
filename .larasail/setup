@@ -13,15 +13,22 @@
 . /etc/.larasail/includes/format
 
 PHP="7.4"
+MYSQL_SERVICE="MySQL"
+MYSQL_PACKAGE="mysql-server"
 
-if [ "$2" = "php80" ]; then
+if [ "$2" = "php80" ] || [ "$3" = "php80" ]; then
    PHP="8.0"
-elif [ "$2" = "php73" ]; then
+elif [ "$2" = "php73" ] || [ "$3" = "php73" ]; then
    PHP="7.3"
-elif [ "$2" = "php72" ]; then
+elif [ "$2" = "php72" ] || [ "$3" = "php72" ]; then
    PHP="7.2"
-elif [ "$2" = "php71" ]; then
+elif [ "$2" = "php71" ] || [ "$3" = "php71" ]; then
    PHP="7.1"
+fi
+
+if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
+   MYSQL_SERVICE="MariaDB"
+   MYSQL_PACKAGE="mariadb-server"
 fi
 
 setsail
@@ -38,7 +45,7 @@ sudo ufw allow 'Nginx HTTPS'
 sudo systemctl restart nginx
 
 bar
-cyan "| Installing MySQL ";
+cyan "| Installing $MYSQL_SERVICE ";
 bar
 
 MYSQLPASS=$(openssl rand -base64 32)
@@ -55,13 +62,21 @@ echo 'password='${MYSQLPASS} >> /home/larasail/.my.cnf
 
 chmod 600 /home/larasail/.my.cnf
 
-
-echo "mysql-server mysql-server/root_password password $MYSQLPASS" | sudo debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password $MYSQLPASS" | sudo debconf-set-selections
+export DEBIAN_FRONTEND=noninteractive
 echo "mysql-server-5.7 mysql-server/root_password password $MYSQLPASS" | sudo debconf-set-selections
 echo "mysql-server-5.7 mysql-server/root_password_again password $MYSQLPASS" | sudo debconf-set-selections
+echo "mysql-server mysql-server/root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+echo "mysql-server mysql-server/re-root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+echo "mysql-server-8.0 mysql-server/root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+echo "mysql-server-8.0 mysql-server/re-root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
 
-sudo apt-get install -y mysql-server
+
+if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
+   echo "mariadb-server-10.3 mysql-server/root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+   echo "mariadb-server-10.3 mysql-server/re-root-pass password ${MYSQLPASS}"|sudo debconf-set-selections
+fi
+
+sudo apt-get install -y ${MYSQL_PACKAGE}
 
 # Get current client IP address
 CLIENT_IP=$(echo $SSH_CLIENT | awk '{ print $1}')
