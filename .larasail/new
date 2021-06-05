@@ -62,7 +62,7 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-composer create-project --prefer-dist laravel/laravel "$PROJECT_PATH"
+bash /etc/.larasail/laravel "$PROJECT_PATH"
 
 if [ -n $HOST ]; then
     echo "Setting up host '$HOST'..."
