@@ -27,6 +27,11 @@ fi
 
 PROJECT_PATH=$1
 
+if [ -d $PROJECT_PATH ]; then
+    redbg "The directory $PROJECT_PATH exists. \n Please Try another one"
+    exit
+fi
+
 git clone https://github.com/thedevdojo/wave.git "$PROJECT_PATH"
 
 cd $PROJECT_PATH
