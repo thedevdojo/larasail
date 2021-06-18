@@ -59,7 +59,7 @@ fi
 
 echo '[client]' > /home/larasail/.my.cnf
 echo "user=${MYSQLUSER}" >> /home/larasail/.my.cnf
-echo "password='${MYSQLPASS}" >> /home/larasail/.my.cnf
+echo "password='${MYSQLPASS}'" >> /home/larasail/.my.cnf
 
 chmod 600 /home/larasail/.my.cnf
 
