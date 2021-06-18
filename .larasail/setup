@@ -49,7 +49,7 @@ cyan "| Installing $MYSQL_SERVICE ";
 bar
 
 MYSQLPASS=$(openssl rand -base64 32)
-MYSQLUSER='larasail_admin'
+MYSQLUSER='dbadmin'
 
 sudo apt-get update
 if [ ! -d /etc/.larasail/tmp ]; then
