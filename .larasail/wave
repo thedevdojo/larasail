@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#/
+#--------------------------------------------------------------------------
+# Wave Project Creator
+#--------------------------------------------------------------------------
+#
+# Create a new Wave project using Larasail
+#
+#/
+
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
+
+setsail
+
+bar
+cyan "| Setting up Wave ";
+bar
+
+if [ -z $1 ]; then
+    echo "Usage: larasail wave <project-path>"
+    echo ""
+    echo "${Cyan}Tip: The project-path must be empty"
+    exit
+fi
+
+PROJECT_PATH=$1
+
+if [ -d $PROJECT_PATH ]; then
+    redbg "The directory $PROJECT_PATH exists. \n Please Try another one"
+    exit
+fi
+
+git clone https://github.com/thedevdojo/wave.git "$PROJECT_PATH"
+
+cd $PROJECT_PATH
+
+cp .env.example .env
+
+sh /etc/.larasail/larasail database init
+
+composer install
+
+php artisan key:generate
+
+php artisan migrate
+
+php artisan db:seed
+
