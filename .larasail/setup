@@ -49,6 +49,7 @@ cyan "| Installing $MYSQL_SERVICE ";
 bar
 
 MYSQLPASS=$(openssl rand -base64 32)
+MYSQLUSER='dbadmin'
 
 sudo apt-get update
 if [ ! -d /etc/.larasail/tmp ]; then
@@ -57,8 +58,8 @@ fi
 
 
 echo '[client]' > /home/larasail/.my.cnf
-echo 'user=root' >> /home/larasail/.my.cnf
-echo 'password='${MYSQLPASS} >> /home/larasail/.my.cnf
+echo "user=${MYSQLUSER}" >> /home/larasail/.my.cnf
+echo "password='${MYSQLPASS}'" >> /home/larasail/.my.cnf
 
 chmod 600 /home/larasail/.my.cnf
 
@@ -77,6 +78,9 @@ if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
 fi
 
 sudo apt-get install -y ${MYSQL_PACKAGE}
+
+sudo service mysql start
+sudo mysql -uroot -p${MYSQLPASS} -e "CREATE USER ${MYSQLUSER}@localhost IDENTIFIED BY '${MYSQLPASS}'; GRANT ALL PRIVILEGES ON *.* TO ${MYSQLUSER}@localhost WITH GRANT OPTION;"
 
 # Get current client IP address
 CLIENT_IP=$(echo $SSH_CLIENT | awk '{ print $1}')
