@@ -26,7 +26,7 @@ You can make sure it's installed by running
 larasail -h
 ```
 
-## Setup Your Laravel Server
+## Setup Your Server
 
 ```
 larasail setup
@@ -51,7 +51,7 @@ larasail setup mariadb php80 # same as 2 above
 
 ```
 
-## Creating a New Laravel Site
+## Creating a New Site
 
 ### :sparkles: Automatically
 
