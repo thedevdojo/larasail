@@ -30,6 +30,8 @@ fi
 
 shift
 
+LARAVEL_PROJECT=true
+WAVE_PROJECT=false
 INSTALL_JET=false
 JET_WITH_TEAMS=false
 HOST_WITH_WWW_ALIAS=false
@@ -55,6 +57,10 @@ while [ $# -gt 0 ]; do
         --teams)
             JET_WITH_TEAMS=true
             ;;
+	--wave)
+            WAVE_PROJECT=true
+            LARAVEL_PROJECT=false
+            ;;
         --www-alias)
             HOST_WITH_WWW_ALIAS=true
             ;;
@@ -62,7 +68,11 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-composer create-project --prefer-dist laravel/laravel "$PROJECT_PATH"
+if $WAVE_PROJECT; then
+    bash /etc/.larasail/wave "$PROJECT_PATH"
+else
+    bash /etc/.larasail/laravel "$PROJECT_PATH"
+fi
 
 if [ -n $HOST ]; then
     echo "Setting up host '$HOST'..."
@@ -74,14 +84,16 @@ if [ -n $HOST ]; then
     fi
 fi
 
-if $INSTALL_JET; then
-    echo "Installing Laravel Jetstream with $JET_STACK..."
-    cd $PROJECT_PATH
-    composer require laravel/jetstream
-    if $JET_WITH_TEAMS; then
-        php artisan jetstream:install $JET_STACK --teams
-    else
-        php artisan jetstream:install $JET_STACK
+if $LARAVEL_PROJECT; then
+    if $INSTALL_JET; then
+        echo "Installing Laravel Jetstream with $JET_STACK..."
+        cd $PROJECT_PATH
+        composer require laravel/jetstream
+        if $JET_WITH_TEAMS; then
+            php artisan jetstream:install $JET_STACK --teams
+        else
+            php artisan jetstream:install $JET_STACK
+        fi
     fi
 fi
 

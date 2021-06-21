@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#/
+#--------------------------------------------------------------------------
+# Laravel Project Creator
+#--------------------------------------------------------------------------
+#
+# Create a new Laravel project using Larasail
+#
+#/
+
+. /etc/.larasail/includes/colors
+. /etc/.larasail/includes/format
+
+setsail
+
+bar
+cyan "| Setting up Laravel ";
+bar
+
+if [ -z $1 ]; then
+    echo "Usage: larasail laravel <project-path>"
+    echo ""
+    echo "${Cyan}Tip: The project-path must be empty"
+    exit
+fi
+
+PROJECT_PATH=$1
+
+composer create-project --prefer-dist laravel/laravel "$PROJECT_PATH"
+

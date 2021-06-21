@@ -26,7 +26,7 @@ You can make sure it's installed by running
 larasail -h
 ```
 
-## Setup Your Laravel Server
+## Setup Your Server
 
 ```
 larasail setup
@@ -55,6 +55,8 @@ larasail setup mariadb php80 # same as 2 above
 
 ### :sparkles: Automatically
 
+#### Laravel
+
 After setting up the server you can create a new project automatically by running:
 
 ```
@@ -63,6 +65,18 @@ larasail new <project-name> [--jet <livewire|inertia>] [--teams] [--www-alias]
 
 This will automatically create a project folder in `/var/www` and set up a host if provided project name contains periods (they will be replaced with underscores for the directory name).
 By default, larasail sets up the Nginx site configuration and Letsencrypt SSL certificate for your domain. If you would like both the `www` alias and root domain setup (i.e `example.com` and `www.example.com`) kindly pass the `--www-alias` flag.
+
+#### Wave
+
+(Wave)[https://github.com/thedevdojo/wave] - The Software as a Service Starter Kit, designed to help you build the SAAS of your dreams :rocket: :moneybag:
+Larasail now allows you to create a new wave project automatically by adding `--wave` flag to the `new` command as follows:
+
+```
+larasail new <project-name> [--wave]
+```
+
+Just like Laravel above, this will automaically create a project folder, setup the Nginx site configuration and Letsencrypt SSL certificate for your domain. 
+By default, you will be promted to create a project database and if successful, will migrate and seed the database. 
 
 ### :construction: Manually
 
