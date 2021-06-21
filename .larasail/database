@@ -86,7 +86,7 @@ create_database_details() {
     # Try to create a new user
 
     mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
-    -e "CREATE USER '$DATABASE_USER'@'%' IDENTIFIED WITH mysql_native_password BY '$DATABASE_PASSWORD';"
+    -e "CREATE USER '$DATABASE_USER'@'%' IDENTIFIED BY '$DATABASE_PASSWORD';"
     STATUS=$?
 
     mysql --defaults-extra-file=/etc/.larasail/tmp/mysql.cnf \
