@@ -173,11 +173,11 @@ else
 	sudo apt-get -y install python-certbot-nginx
 fi
 
-if [$INSTALL_REDIS -eq 1]
+if [ $INSTALL_REDIS -eq 1 ] ; then
 	bar
 	cyan "| Installing Redis"
 	bar
-	
+
 	sudo apt -y install redis-server
 fi
 
