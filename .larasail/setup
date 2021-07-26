@@ -15,6 +15,7 @@
 PHP="7.4"
 MYSQL_SERVICE="MySQL"
 MYSQL_PACKAGE="mysql-server"
+INSTALL_REDIS=0
 
 if [ "$2" = "php80" ] || [ "$3" = "php80" ]; then
    PHP="8.0"
@@ -29,6 +30,10 @@ fi
 if [ "$2" = "mariadb" ] || [ "$3" = "mariadb" ]; then
    MYSQL_SERVICE="MariaDB"
    MYSQL_PACKAGE="mariadb-server"
+fi
+
+if [ "$2" = "redis" ] || [ "$3" = "redis" ]; then
+   INSTALL_REDIS=1
 fi
 
 setsail
@@ -166,6 +171,14 @@ else
 	sudo add-apt-repository ppa:certbot/certbot
 	sudo apt-get update
 	sudo apt-get -y install python-certbot-nginx
+fi
+
+if [$INSTALL_REDIS -eq 1]
+	bar
+	cyan "| Installing Redis"
+	bar
+	
+	sudo apt -y install redis-server
 fi
 
 setsail
