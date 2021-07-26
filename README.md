@@ -68,15 +68,15 @@ By default, larasail sets up the Nginx site configuration and Letsencrypt SSL ce
 
 #### Wave
 
-(Wave)[https://github.com/thedevdojo/wave] - The Software as a Service Starter Kit, designed to help you build the SAAS of your dreams :rocket: :moneybag:
+[Wave](https://github.com/thedevdojo/wave) - The Software as a Service Starter Kit, designed to help you build the SAAS of your dreams :rocket: :moneybag:
 Larasail now allows you to create a new wave project automatically by adding `--wave` flag to the `new` command as follows:
 
 ```
 larasail new <project-name> [--wave]
 ```
 
-Just like Laravel above, this will automaically create a project folder, setup the Nginx site configuration and Letsencrypt SSL certificate for your domain. 
-By default, you will be promted to create a project database and if successful, will migrate and seed the database. 
+Just like Laravel above, this will automaically create a project folder, setup the Nginx site configuration and Letsencrypt SSL certificate for your domain.
+By default, you will be promted to create a project database and if successful, will migrate and seed the database.
 
 ### :construction: Manually
 
