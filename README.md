@@ -51,6 +51,18 @@ larasail setup mariadb php80 # same as 2 above
 
 ```
 
+### Redis
+By default, larasail does not install a Redis server. To opt to install `redis`, pass `redis` option to `larasail setup` as the second or third parameter like so:
+```shell
+larasail setup php80 redis
+```
+
+or
+
+```shell
+larasail setup redis
+```
+
 ## Creating a New Site
 
 ### :sparkles: Automatically
