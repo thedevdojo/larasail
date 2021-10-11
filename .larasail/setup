@@ -164,7 +164,7 @@ bar
 
 sudo apt-get install -y python3 python3-venv libaugeas0 python3-pip
 #Remove certbot in case it is already installed from the repository/ppa to avoid conflict
-sudo apt-get remove --purge certbot
+sudo apt-get remove --purge certbot python3-certbot-nginx
 
 sudo python3 -m venv /opt/certbot/
 sudo /opt/certbot/bin/pip install --upgrade pip
