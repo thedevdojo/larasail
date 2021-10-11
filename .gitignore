@@ -1,0 +1,4 @@
+/.idea
+/.vscode
+.dockerignore
+**/.DS_Store
