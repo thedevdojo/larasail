@@ -17,7 +17,9 @@ MYSQL_SERVICE="MySQL"
 MYSQL_PACKAGE="mysql-server"
 INSTALL_REDIS=0
 
-if [ "$2" = "php80" ] || [ "$3" = "php80" ]; then
+if [ "$2" = "php81" ] || [ "$3" = "php81" ]; then
+   PHP="8.1"
+elif [ "$2" = "php80" ] || [ "$3" = "php80" ]; then
    PHP="8.0"
 elif [ "$2" = "php73" ] || [ "$3" = "php73" ]; then
    PHP="7.3"
