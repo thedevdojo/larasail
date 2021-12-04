@@ -32,13 +32,14 @@ larasail -h
 larasail setup
 ```
 
-The default configuration will install `Nginx`, `PHP 7.4`, and `MySQL 5.7`. If you wish to use PHP `7.1`, `7.2`, `7.3`, or `8.0`, you can include the argument `php71`/`php72`/`php73`/`php80` like so:
+The default configuration will install `Nginx`, `PHP 7.4`, and `MySQL 5.7`. If you wish to use PHP `7.1`, `7.2`, `7.3`, `8.0` or `8.1` you can include the argument `php71`/`php72`/`php73`/`php80`/`php81` like so:
 
 ```
 larasail setup php71 # Install with PHP 7.1
 larasail setup php72 # Install with PHP 7.2
 larasail setup php73 # Install with PHP 7.3
 larasail setup php80 # Install with PHP 8.0
+larasail setup php81 # Install with PHP 8.1
 ```
 
 ### Database
