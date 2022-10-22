@@ -40,6 +40,22 @@ fi
 
 setsail
 
+CHECK_SWAP=$(swapon -s | wc -l)
+if [ $CHECK_SWAP -lt 1 ] ; then
+    bar
+    cyan "| Adding swap file "
+    bar
+
+    # Create a swap file
+    sudo fallocate -l 1G /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+
+    # Making the swap file permanent
+    sudo cp /etc/fstab /etc/fstab.bak
+    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+fi
 
 bar
 cyan "| Installing Nginx ";
@@ -121,24 +137,6 @@ cyan "| Updating Permissions "
 bar
 
 sudo chown -R larasail:larasail /var/www
-
-CHECK_SWAP=$(swapon -s | wc -l)
-if [ $CHECK_SWAP -lt 1 ] ; then
-    bar
-    cyan "| Adding swap file "
-    bar
-
-    # Create a swap file
-    sudo fallocate -l 1G /swapfile
-    sudo chmod 600 /swapfile
-    sudo mkswap /swapfile
-    sudo swapon /swapfile
-
-    # Making the swap file permanent
-    sudo cp /etc/fstab /etc/fstab.bak
-    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-fi
-
 
 bar
 cyan "| Installing Composer ";
