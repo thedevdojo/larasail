@@ -108,8 +108,8 @@ sudo mysql -uroot -p${MYSQLPASS} -e "CREATE USER ${MYSQLUSER}@localhost IDENTIFI
 # Get current client IP address
 CLIENT_IP=$(echo $SSH_CLIENT | awk '{ print $1}')
 
-# Enable 3306 ports in order to connect to database via Sequel Pro
-sudo ufw allow from ${CLIENT_IP}/32 to any port 3306
+# To enable 3306 ports in order to connect to database via Sequel Pro, run:
+# sudo ufw allow from ${CLIENT_IP}/32 to any port 3306
 
 
 bar
