@@ -131,7 +131,7 @@ sudo apt-get -y upgrade
 
 sudo apt-get install -y unzip
 sudo apt-get install -y php-cli
-sudo apt-get install -y php$PHP-cli php$PHP-common php$PHP-mysql php$PHP-gd php$PHP-mysql php$PHP-curl php$PHP-mbstring php$PHP-xml php$PHP-zip php$PHP-fpm curl git
+sudo apt-get install -y php$PHP-cli php$PHP-common php$PHP-mysql php$PHP-gd php$PHP-mysql php$PHP-curl php$PHP-mbstring php$PHP-xml php$PHP-zip php$PHP-fpm php$PHP-sqlite3 php$PHP-intl curl git
 
 sudo rm /usr/bin/php
 sudo ln -s /usr/bin/php$PHP /usr/bin/php
