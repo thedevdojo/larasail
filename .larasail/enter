@@ -14,3 +14,19 @@ if [ "$(whoami)" != "larasail" ]; then
 else
     echo "Already logged in as larasail"
 fi
+#!/bin/bash
+
+#/
+#--------------------------------------------------------------------------
+# Larasail Environment Launcher
+#--------------------------------------------------------------------------
+#
+# Enter shell as larasail user
+#
+#/
+
+if [ "$(whoami)" != "larasail" ]; then
+    sudo su - larasail
+else
+    echo "Already logged in as larasail"
+fi
