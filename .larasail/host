@@ -82,7 +82,7 @@ fi
 
 if [ -d ${rootPath}/database ]; then
 	echo "Updating the permissions of the SQLite database file"
-	sudo chown www-data:larasail /var/www/laravel/database/database.sqlite
+	sudo chown www-data:larasail $rootPath/database/database.sqlite
 fi
 
 if ! [ -d $sitesEnable ]; then
