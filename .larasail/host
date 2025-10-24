@@ -80,6 +80,12 @@ if [ -d ${rootPath}/bootstrap/cache ]; then
 	sudo chmod -R 775 ${rootPath}/bootstrap/cache
 fi
 
+if [ -d ${rootPath}/database ]; then
+	echo "Updating the permissions of the database folder"
+	sudo chown -R www-data:larasail ${rootPath}/database
+	sudo chmod -R 775 ${rootPath}/database
+fi
+
 if ! [ -d $sitesEnable ]; then
 	mkdir $sitesEnable
 	chmod 755 $sitesEnable
