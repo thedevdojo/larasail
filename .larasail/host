@@ -80,6 +80,11 @@ if [ -d ${rootPath}/bootstrap/cache ]; then
 	sudo chmod -R 775 ${rootPath}/bootstrap/cache
 fi
 
+if [ -d ${rootPath}/database ]; then
+	echo "Updating the permissions of the SQLite database file"
+	sudo chown www-data:larasail /var/www/laravel/database/database.sqlite
+fi
+
 if ! [ -d $sitesEnable ]; then
 	mkdir $sitesEnable
 	chmod 755 $sitesEnable

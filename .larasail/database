@@ -141,14 +141,25 @@ case $1 in
             #
 
             if [ -f .env ]; then
+                # Switch from SQLite to MySQL and update credentials
+                sed -i "s/^DB_CONNECTION=sqlite/DB_CONNECTION=mysql/g" .env
+                sed -i "s/^# DB_HOST=127.0.0.1/DB_HOST=127.0.0.1/g" .env
+                sed -i "s/^# DB_PORT=3306/DB_PORT=3306/g" .env
+                
+                # Update database name (both commented and uncommented lines)
                 value="$DATABASE_NAME" \
                 perl -i -pe 's/^(?!#)(\s*DB_DATABASE)=.*/$1=$ENV{value}/' .env
+                sed -i "s/^# DB_DATABASE=.*$/DB_DATABASE=$DATABASE_NAME/g" .env
 
+                # Update database username (both commented and uncommented lines)
                 value="$DATABASE_USER" \
                 perl -i -pe 's/^(?!#)(\s*DB_USERNAME)=.*/$1=$ENV{value}/' .env
+                sed -i "s/^# DB_USERNAME=.*$/DB_USERNAME=$DATABASE_USER/g" .env
 
+                # Update database password (both commented and uncommented lines)
                 value="$DATABASE_PASSWORD" \
                 perl -i -pe 's/^(?!#)(\s*DB_PASSWORD)=.*/$1=$ENV{value}/' .env
+                sed -i "s/^# DB_PASSWORD=.*$/DB_PASSWORD=$DATABASE_PASSWORD/g" .env
 
                 echo "${Green}SUCCESS:${Color_Off} Updated .env with database credentials"
                 echo "${Green}Tip:${Color_Off} Do not forget to run 'php artisan migrate'"
